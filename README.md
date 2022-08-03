@@ -17,13 +17,13 @@ O acesso ao phpmyadmin é feito por IP do servidor, ex. http://111.111.111.111:8
 
 Seguindo todos os passos acima e não deixando faltar nenhuma da informações solicitadas, é só aguardar o instalador terminar a instalação.
 
-Ao terminar a instalação é só logar com os dados padrão, caso não saiba veja na página do projeto [Press Ticket aqui](https://github.com/rtenorioh/Press-Ticket).
+Ao terminar a instalação é só logar com os dados padrão, caso não saiba veja na página do projeto [Press Ticket aqui](https://github.com/owenbrasil/).
 
 ## INSTALAÇÃO 
 FAZENDO DOWNLOAD DO INSTALADOR & INICIANDO A PRIMEIRA INSTALAÇÃO (USAR SOMENTE PARA PRIMEIRA INSTALAÇÃO):
 
 ```bash
-sudo apt install -y git && git clone https://github.com/tonnybarros/install_pressticket-phpmyadmin.git instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_primaria
+sudo apt install -y git && git clone https://github.com/owenbrasil/install_mysql.git instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_primaria
 ```
 
 ACESSANDO DIRETORIO DO INSTALADOR & INICIANDO INSTALAÇÕES ADICIONAIS (USAR ESTE COMANDO PARA SEGUNDA OU MAIS INSTALAÇÃO:
@@ -31,7 +31,7 @@ ACESSANDO DIRETORIO DO INSTALADOR & INICIANDO INSTALAÇÕES ADICIONAIS (USAR EST
 cd && cd ./instalador && sudo ./install_instancia
 ```
 ## Recursos 
-- Multi instalador ilimitado [Press Ticket](https://github.com/rtenorioh/Press-Ticket)
+- Multi instalador ilimitado [Press Ticket](https://github.com/owenbrasil/install_mysql)
 - Recursos isolados para cada instalação
 - Instala Docker Mariadb (isolados)
 - Instala Docker Phpmyadmin (isolados)
@@ -43,4 +43,4 @@ cd && cd ./instalador && sudo ./install_instancia
 - [Press-Ticket-Installer](https://github.com/robsonwr/Press-Ticket-Installer)
 
 ## Instalação manual
-- [Press Ticket](https://github.com/rtenorioh/Press-Ticket)
+- [Press Ticket](https://github.com/owenbrasil/)
