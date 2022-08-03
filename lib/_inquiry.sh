@@ -65,10 +65,18 @@ get_backend_port() {
   read -p "> " backend_port
 }
 
+get_redis_port() {
+  
+  print_banner
+  printf "${WHITE} 💻 Digite a porta do AGENDAMENTO MSG para a ${instancia_add}; Ex: 5000 A 5999 ${GRAY_LIGHT}"
+  printf "\n\n"
+  read -p "> " redis_port
+}
+
 get_phpmyadmin_port() {
   
   print_banner
-  printf "${WHITE} 💻 Digite a porta do PHPMYADMIN  para a ${instancia_add}; Ex: 8080 ${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite a porta do PHPMYADMIN  para a ${instancia_add}; Ex: 6000 A 6999 ${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " phpmyadmin_port
 }
@@ -76,7 +84,7 @@ get_phpmyadmin_port() {
 get_mysql_port() {
   
   print_banner
-  printf "${WHITE} 💻 Digite a porta MYSQL para ${instancia_add}; Ex: 3306 (3306, 3307...) ${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Digite a porta MYSQL para ${instancia_add}; Ex: 7000 A 7999 ${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " mysql_port
 }
@@ -92,6 +100,7 @@ get_urls() {
   get_backend_url
   get_frontend_port
   get_backend_port
+  get_redis_port
   get_phpmyadmin_port
   get_mysql_port
 }
@@ -105,10 +114,10 @@ software_update() {
 inquiry_options() {
   
   print_banner
-  printf "${WHITE} 💻 Bem vindo(a) ao instalador Press Ticket, Selecione abaixo a proxima ação!${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Bem vindo(a) ao Gerenciador Whaticket, Selecione abaixo a proxima ação!${GRAY_LIGHT}"
   printf "\n\n"
-  printf "   [1] Instalar o Press Ticket\n"
-  printf "   [2] Atualizar o Press Ticket\n"
+  printf "   [1] Instalar whaticket\n"
+  printf "   [2] Atualizar whaticket\n"
   printf "\n"
   read -p "> " option
 
