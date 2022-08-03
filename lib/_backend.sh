@@ -8,7 +8,7 @@
 #######################################
 backend_redis_create() {
   print_banner
-  printf "${WHITE} 💻 Criando banco e phpmyadmin via Docker...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Criando banco, phpmyadmin & Redis via Docker...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -17,6 +17,7 @@ backend_redis_create() {
   usermod -aG docker deploy
   docker run --name mysql-${instancia_add} -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
   docker run --name phpmyadmin-${instancia_add} -d --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
+  docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
 EOF
 sleep 2
 
@@ -66,8 +67,13 @@ JWT_REFRESH_SECRET=${jwt_refresh_secret}
 PMA_PORT=${phpmyadmin_port}
 REDE=${instancia_add}
 
+REDIS_URI=redis://:${mysql_root_password}@127.0.0.1:${redis_port}
+REDIS_OPT_LIMITER_MAX=1
+REGIS_OPT_LIMITER_DURATION=3000
+
 USER_LIMIT=${max_user}
 CONNECTIONS_LIMIT=${max_whats}
+CLOSED_SEND_BY_ME=true
 [-]EOF
 EOF
 
