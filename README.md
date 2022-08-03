@@ -29,7 +29,7 @@ sudo apt install -y git && git clone https://github.com/owenbrasil/install_mysql
 
 ACESSANDO DIRETORIO DO INSTALADOR & INICIANDO INSTALAÇÕES ADICIONAIS (USAR ESTE COMANDO PARA SEGUNDA OU MAIS INSTALAÇÃO:
 ```bash
-cd && rm -rf instalador && git clone https://github.com/owenbrasil/install_mysql.git /instalador/ && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_instancia
+cd && rm -rf instalador && git clone https://github.com/owenbrasil/install_mysql.git ./instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_instancia
 ```
 ## Recursos 
 - Multi instalador ilimitado [Whaticket](https://github.com/owenbrasil/install_mysql)
