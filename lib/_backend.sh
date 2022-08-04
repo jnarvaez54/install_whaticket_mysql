@@ -15,23 +15,20 @@ backend_redis_create() {
 
   sudo su - root <<EOF
   usermod -aG docker deploy
-  docker network create deploy
-  docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
-  docker run --name mysql-deploy --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} --restart always -p 3306:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
-  docker run --name phpmyadmin-deploy --network deploy -d -e PMA_PORT=mysql-deploy --link mysql-deploy:db -p 8080:80 phpmyadmin/phpmyadmin
-  
-  # CRIAR BANCO INDIVIDUALIZADOS  
-  # docker run --name mysql-${instancia_add} --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
-  # ensure idempotency
-  # CRIAR PHPMYADMIN INDIVIDUALIZADOS  
-  # docker run --name phpmyadmin-${instancia_add} --network deploy -d -e PMA_PORT=mysql-${instancia_add} --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
-  
+  docker exec -it mysql-deploy mysql -uroot -p${mysql_root_password}
+  CREATE DATABASE ${instancia_add};
+  GRANT ALL ON ${instancia_add}.* TO '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}' WITH GRANT OPTION;
+  exit
+
   sleep 2
 
-  docker exec -it mysql-deploy mysql -uroot -p${phpmyadmin_password}
-  CREATE DATABASE ${instancia_add};
-  GRANT ALL ON ${instancia_add}.* TO '${mysql_root_password}'@'%' IDENTIFIED BY '${mysql_root_password}' WITH GRANT OPTION;
-  exit
+  docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
+
+  # CRIAR BANCO INDIVIDUALIZADOS  
+  # docker run --name mysql-${instancia_add} --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+
+  # CRIAR PHPMYADMIN INDIVIDUALIZADOS  
+  # docker run --name phpmyadmin-${instancia_add} --network deploy -d -e PMA_PORT=mysql-${instancia_add} --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
 
 EOF
 sleep 2
