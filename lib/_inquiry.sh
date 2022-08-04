@@ -3,9 +3,17 @@
 get_mysql_root_password() {
   
   print_banner
-  printf "${WHITE} 💻 Insira senha padrão para o sistema (senha root mysql):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Insira sua senha administrativa (senha root mysql):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " mysql_root_password
+}
+
+get_phpmyadmin_password() {
+  
+  print_banner
+  printf "${WHITE} 💻 Insira a senha (PHPMYADMIN) para que seu cliente (${instancia_add}) acesse de forma individual seu Banco Mysql:${GRAY_LIGHT}"
+  printf "\n\n"
+  read -p "> " phpmyadmin_password
 }
 
 get_instancia_add() {
@@ -93,6 +101,7 @@ get_mysql_port() {
 
 get_urls() {
   get_mysql_root_password
+  get_phpmyadmin_password
   get_instancia_add
   get_max_whats
   get_max_user
@@ -101,8 +110,8 @@ get_urls() {
   get_frontend_port
   get_backend_port
   get_redis_port
-  get_phpmyadmin_port
-  get_mysql_port
+  # get_phpmyadmin_port
+  # get_mysql_port
 }
 
 software_update() {
