@@ -13,7 +13,7 @@ backend_redis_create() {
 
   sleep 2
 
-  sudo su - root <<EOF
+  sudo su - root
     docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
     docker exec -it mysql-deploy mysql -uroot -p${mysql_root_password}
     CREATE USER '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}';
@@ -21,8 +21,6 @@ backend_redis_create() {
     GRANT ALL PRIVILEGES ON ${instancia_add}.* TO ${instancia_add}@'%';
     FLUSH PRIVILEGES;
     exit
-
-EOF
 sleep 2
 
 }
