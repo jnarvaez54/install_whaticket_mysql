@@ -69,7 +69,7 @@ PORT=${backend_port}
 DB_HOST=localhost
 DB_PORT=3306
 DB_DIALECT=mysql
-DB_USER=${instancia_add}
+DB_USER=root
 DB_PASS=${mysql_root_password}
 DB_NAME=${instancia_add}
 
