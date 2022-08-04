@@ -13,14 +13,10 @@ backend_redis_create() {
 
   sleep 2
 
-  sudo su - root
-    docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
-    docker exec -it mysql-deploy mysql -uroot -p${mysql_root_password}
-    CREATE USER '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}';
-    CREATE DATABASE ${instancia_add} character set UTF8mb4 collate utf8mb4_bin;
-    GRANT ALL PRIVILEGES ON ${instancia_add}.* TO ${instancia_add}@'%';
-    FLUSH PRIVILEGES;
-    exit
+  sudo su - root <<EOF
+docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
+docker exec -it mysql-deploy mysql -uroot -psa2a9525 -e "CREATE USER '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}'; CREATE DATABASE ${instancia_add} character set UTF8mb4 collate utf8mb4_bin; GRANT ALL PRIVILEGES ON ${instancia_add}.* TO ${instancia_add}@'%'; FLUSH PRIVILEGES;"
+EOF
 sleep 2
 
 }
