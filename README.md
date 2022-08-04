@@ -13,7 +13,7 @@ Vai solicitar os seguintes dados
 8. Porta do backend, geralmente para a primeira instalação 4000, e a seguintes instalações que tiverem, 4001, 4002...
 9. Porta do redis, geralmente para a primeira instalação 5000, e a seguintes instalações que tiverem, 5001, 5002...
 10. Porta do phpmyadmin, geralmente para a primeira instalação 6000, e a seguintes instalações que tiverem, 6001, 6002...
-O acesso ao phpmyadmin é feito por IP do servidor, ex. http://111.111.111.111:6000/phpmyadmin
+O acesso ao phpmyadmin é feito por IP do servidor, ex. http://111.111.111.111:6000
 11. Porta do MYSQL, geralmente para a primeira instalação 7000, e a seguintes instalações que tiverem, 7001, 7002...
 
 Seguindo todos os passos acima e não deixando faltar nenhuma da informações solicitadas, é só aguardar o instalador terminar a instalação.
@@ -42,7 +42,7 @@ cd && rm -rf instalador && git clone https://github.com/owenbrasil/install_mysql
 - Atualiza press ticket para última versão.
 
 ## Versão Debian
-- [Whaticket-Installer](https://github.com/robsonwr/Press-Ticket-Installer)
+- [Whaticket-Installer](https://github.com/owenbrasil/)
 
 ## Instalação manual
 - [Whaticket](https://github.com/owenbrasil/)
