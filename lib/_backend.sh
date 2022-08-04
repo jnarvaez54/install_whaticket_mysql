@@ -15,11 +15,12 @@ backend_redis_create() {
 
   sudo su - root <<EOF
   usermod -aG docker deploy
-  docker exec -it mysql-deploy mysql -uroot -p${mysql_root_password}
-  CREATE DATABASE ${instancia_add};
-  GRANT ALL ON ${instancia_add}.* TO '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}' WITH GRANT OPTION;
-  FLUSH PRIVILEGES;  
-  exit
+    docker exec -it mysql-deploy mysql -uroot -p${mysql_root_password}
+    CREATE USER '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}';
+    CREATE DATABASE ${instancia_add} character set UTF8mb4 collate utf8mb4_bin;
+    GRANT ALL PRIVILEGES ON ${instancia_add}.* TO ${instancia_add}@'%';
+    FLUSH PRIVILEGES;
+    exit
 
   sleep 2
 
