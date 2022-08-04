@@ -18,6 +18,7 @@ backend_redis_create() {
   docker exec -it mysql-deploy mysql -uroot -p${mysql_root_password}
   CREATE DATABASE ${instancia_add};
   GRANT ALL ON ${instancia_add}.* TO '${instancia_add}'@'%' IDENTIFIED BY '${phpmyadmin_password}' WITH GRANT OPTION;
+  FLUSH PRIVILEGES;  
   exit
 
   sleep 2
