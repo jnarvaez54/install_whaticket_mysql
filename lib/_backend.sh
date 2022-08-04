@@ -22,7 +22,7 @@ backend_redis_create() {
   
   # CRIAR BANCO INDIVIDUALIZADOS  
   # docker run --name mysql-${instancia_add} --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
-  
+  # sele
   # CRIAR PHPMYADMIN INDIVIDUALIZADOS  
   # docker run --name phpmyadmin-${instancia_add} --network deploy -d -e PMA_PORT=mysql-${instancia_add} --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
   
