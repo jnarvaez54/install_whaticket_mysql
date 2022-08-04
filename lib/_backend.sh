@@ -17,8 +17,22 @@ backend_redis_create() {
   usermod -aG docker deploy
   docker network create deploy
   docker run --name redis-${instancia_add} -p ${redis_port}:6379 --restart always --detach redis redis-server --requirepass ${mysql_root_password}
-  docker run --name mysql-${instancia_add} --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
-  docker run --name phpmyadmin-${instancia_add} --network deploy -d -e PMA_PORT=mysql-${instancia_add} --link mysql-${instancia_add}:db -p 9001:80 phpmyadmin/phpmyadmin
+  docker run --name mysql-deploy --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} --restart always -p 3306:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+  docker run --name phpmyadmin-deploy --network deploy -d -e PMA_PORT=mysql-deploy --link mysql-deploy:db -p 8080:80 phpmyadmin/phpmyadmin
+  
+  //CRIAR BANCO INDIVIDUALIZADOS  
+  //docker run --name mysql-${instancia_add} --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=${instancia_add} -e MYSQL_USER=${instancia_add} -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p ${mysql_port}:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+  
+  //CRIAR PHPMYADMIN INDIVIDUALIZADOS  
+  //docker run --name phpmyadmin-${instancia_add} --network deploy -d -e PMA_PORT=mysql-${instancia_add} --link mysql-${instancia_add}:db -p ${phpmyadmin_port}:80 phpmyadmin/phpmyadmin
+  
+  sleep 2
+
+  docker exec -it mysql-deploy mysql -uroot -p${phpmyadmin_password}
+  CREATE DATABASE ${instancia_add};
+  GRANT ALL ON ${instancia_add}.* TO '${mysql_root_password}'@'%' IDENTIFIED BY '${mysql_root_password}' WITH GRANT OPTION;
+  exit
+
 EOF
 sleep 2
 
@@ -56,7 +70,7 @@ CHROME_BIN=/usr/bin/google-chrome-stable
 PORT=${backend_port}
 
 DB_HOST=localhost
-DB_PORT=${mysql_port}
+DB_PORT=3306
 DB_DIALECT=mysql
 DB_USER=${instancia_add}
 DB_PASS=${mysql_root_password}
@@ -65,7 +79,7 @@ DB_NAME=${instancia_add}
 JWT_SECRET=${jwt_secret}
 JWT_REFRESH_SECRET=${jwt_refresh_secret}
 
-PMA_PORT=${phpmyadmin_port}
+PMA_PORT=8080
 REDE=${instancia_add}
 
 REDIS_URI=redis://:${mysql_root_password}@127.0.0.1:${redis_port}
