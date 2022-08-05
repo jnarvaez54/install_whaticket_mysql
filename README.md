@@ -23,15 +23,15 @@ O acesso ao phpmyadmin é feito por IP do servidor, ex. http://111.111.111.111:8
 FAZENDO DOWNLOAD DO INSTALADOR & INICIANDO A PRIMEIRA INSTALAÇÃO (USAR SOMENTE PARA PRIMEIRA INSTALAÇÃO):
 
 ```bash
-sudo apt install -y git && git clone https://github.com/owenbrasil/install_mysql.git ./instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_primaria
+sudo apt install -y git && git clone https://github.com/owenbrasil/install_whaticket.git ./instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_primaria
 ```
 
 ACESSANDO DIRETORIO DO INSTALADOR & INICIANDO INSTALAÇÕES ADICIONAIS (USAR ESTE COMANDO PARA SEGUNDA OU MAIS INSTALAÇÃO:
 ```bash
-cd && rm -rf instalador && git clone https://github.com/owenbrasil/install_mysql.git ./instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_instancia
+cd && rm -rf instalador && git clone https://github.com/owenbrasil/install_whaticket.git ./instalador && sudo chmod -R 777 ./instalador && cd ./instalador && sudo ./install_instancia
 ```
 ## Recursos 
-- Multi instalador ilimitado [Whaticket](https://github.com/owenbrasil/install_mysql)
+- Multi instalador ilimitado [Whaticket](https://github.com/owenbrasil/install_whaticket)
 - Recursos isolados para cada instalação
 - Instala Docker Mariadb (isolados)
 - Instala Docker Redis (isolados)
