@@ -195,7 +195,7 @@ system_pm2_install() {
   sleep 2
 
   docker network create deploy
-  docker run --name mysql-deploy --network deploy -e MYSQL_ROOT_PASSWORD=${mysql_root_password} -e MYSQL_DATABASE=deploy -e MYSQL_USER=deploy -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p 3306:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+  docker run --name mysql-deploy --network deploy -e MYSQL_ROOT_PASSWORD=Sa2a9525@ -e MYSQL_DATABASE=deploy -e MYSQL_USER=deploy -e MYSQL_PASSWORD=${mysql_root_password} --restart always -p 3306:3306 -d mariadb:latest --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
   docker run --name phpmyadmin-deploy --network deploy -d -e PMA_PORT=mysql-deploy --link mysql-deploy:db -p 8080:80 phpmyadmin/phpmyadmin
 
 EOF
