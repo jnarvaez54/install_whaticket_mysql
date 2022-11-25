@@ -332,4 +332,14 @@ system_certbot_setup() {
 EOF
 
   sleep 2
+
+sudo su - deploy <<EOF
+cd~
+cd ${instancia_add}/backend
+npm uninstall @adiwajshing/baileys
+npm install @adiwajshing/baileys@4.2.0
+pm2 restart all
+
+EOF
+  sleep 2
 }
