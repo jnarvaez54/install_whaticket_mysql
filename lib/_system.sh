@@ -335,11 +335,12 @@ EOF
 
 sudo su - deploy <<EOF
 cd~
-cd ${instancia_add}/backend
-npm uninstall @adiwajshing/baileys
-npm install @adiwajshing/baileys@4.2.0
+cd ${instancia_add}
+pm2 startup
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u deploy --hp /home/deploy
+pm2 save
 pm2 restart all
-
+pm2 save
 EOF
   sleep 2
 }
