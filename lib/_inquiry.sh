@@ -1,4 +1,11 @@
 #!/bin/bash
+get_linkgit() {
+  
+  print_banner
+  printf "${WHITE} 💻 Insira Link do GITHUB que deseja instalar:${GRAY_LIGHT}"
+  printf "\n\n"
+  read -p "> " linkgit
+}
 
 get_mysql_root_password() {
   
@@ -100,6 +107,7 @@ get_mysql_port() {
 
 
 get_urls() {
+  get_linkgit
   get_mysql_root_password
   get_phpmyadmin_password
   get_instancia_add
