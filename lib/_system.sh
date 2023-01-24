@@ -79,7 +79,7 @@ system_node_install() {
   sleep 2
   npm install -g npm@latest
   sleep 2
-  sudo timedatectl set-timezone America/Sao_Paulo
+  sudo timedatectl set-timezone America/Guayaquil
   
 EOF
 
